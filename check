@@ -1,0 +1,25 @@
+#!/bin/bash
+
+load inquirer
+
+check() {
+  if [ ! -d $SERVICE_V2FLY_SSL ]; then
+    log::error "Please prepare ssl($(color::green "fullchain.pem + privkey.pem")) in $(color::green $SERVICE_V2FLY_SSL)"
+    exit 1
+  fi
+
+  if [ ! -f $SERVICE_V2FLY_CONFIG ]; then
+     inquirer::text "请输入 USER ID:" user_id "$(curl https://httpbin.zcorky.com/uuid 2>/dev/null | awk -F '"' '{print $4}')"
+
+     echo "ID=$user_id" > $V2FLY_USER_CONFIG
+  fi
+
+  config::load_file $SERVICE_V2FLY_CONFIG
+  if [ -z "$ID" ]; then
+    inquirer::text "请输入 USER ID:" user_id "$(curl https://httpbin.zcorky.com/uuid 2>/dev/null | awk -F '"' '{print $4}')"
+
+    echo "ID=$user_id" > $V2FLY_USER_CONFIG
+  fi
+}
+
+check $@
