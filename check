@@ -20,6 +20,9 @@ check() {
 
     echo "ID=$user_id" > $SERVICE_V2FLY_CONFIG
   fi
+
+  # @TODO call manually
+  service::run_check_ok
 }
 
 check $@
