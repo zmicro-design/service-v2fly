@@ -1,0 +1,18 @@
+export SERVICE_V2FLY_NAME=v2fly
+
+export SERVICE_V2FLY_DATA=$(service::get_data_path $PLUGIN_V2FLY_NAME)
+export SERVICE_V2FLY_LOGS=$(service::get_logs_path $PLUGIN_V2FLY_NAME)
+export SERVICE_V2FLY_CONFIG=$(service::get_configs_path $PLUGIN_V2FLY_NAME)/config
+
+if [ -z "$SERVICE_V2FLY_DATA" ]; then
+  log_error "SERVICE_V2FLY_DATA is empty"
+  exit 1
+fi
+
+if [ -z "$SERVICE_V2FLY_LOGS" ]; then
+  log_error "SERVICE_V2FLY_LOGS is empty"
+  exit 1
+fi
+
+export SERVICE_V2FLY_VERSION=v4.23.1
+export SERVICE_V2FLY_SSL=${SERVICE_V2FLY_DATA}/ssl

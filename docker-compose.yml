@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  ingress:
+    restart: always
+    build:
+      context: ./images/ingress
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
+    environment:
+      UPSTREAM: v2fly:8080
+    volumes:
+      - ${SERVICE_V2FLY_SSL}:/etc/nginx-ssl
+
+  v2fly:
+    restart: always
+    build:
+      context: ./images/v2fly
+    env_file:
+      - ${SERVICE_V2FLY_CONFIG}
+    volumes:
+      - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+      - ${SERVICE_V2FLY_LOGS}:/var/log/v2ray
+
+networks:
+  default:
+    external: true
+    name: compose-ingress
