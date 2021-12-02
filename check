@@ -9,14 +9,14 @@ check() {
   fi
 
   if [ ! -f $SERVICE_V2FLY_CONFIG ]; then
-     inquirer::text "请输入 USER ID:" user_id "$(curl https://httpbin.zcorky.com/uuid 2>/dev/null | awk -F '"' '{print $4}')"
+     inquirer::text "请输入 USER ID:" user_id $(os::uuid)
 
      echo "ID=$user_id" > $SERVICE_V2FLY_CONFIG
   fi
 
   config::load_file $SERVICE_V2FLY_CONFIG
   if [ -z "$ID" ]; then
-    inquirer::text "请输入 USER ID:" user_id "$(curl https://httpbin.zcorky.com/uuid 2>/dev/null | awk -F '"' '{print $4}')"
+    inquirer::text "请输入 USER ID:" user_id $(os::uuid)
 
     echo "ID=$user_id" > $SERVICE_V2FLY_CONFIG
   fi
