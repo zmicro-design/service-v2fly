@@ -1,4 +1,4 @@
-FROM v2fly/v2fly-core:${SERVICE_V2FLY_VERSION}
+FROM v2fly/v2fly-core:v4.23.1
 
 COPY config.json /etc/v2ray/config.json
 

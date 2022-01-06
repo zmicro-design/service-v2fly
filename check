@@ -3,7 +3,15 @@
 load inquirer
 
 check() {
+  if [ ! -f $SERVICE_CONFIG ]; then
+     touch $SERVICE_CONFIG
+  fi
+
   if [ ! -d $SERVICE_V2FLY_SSL ]; then
+    mkdir $SERVICE_V2FLY_SSL
+  fi
+
+  if [ ! -f "$SERVICE_V2FLY_SSL/fullchain.pem" ]; then
     log::error "Please prepare ssl($(color::green "fullchain.pem + privkey.pem")) in $(color::green $SERVICE_V2FLY_SSL)"
     exit 1
   fi
