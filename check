@@ -8,21 +8,13 @@ check() {
     exit 1
   fi
 
-  if [ ! -f $SERVICE_V2FLY_CONFIG ]; then
-     inquirer::text "请输入 USER ID:" user_id $(os::uuid)
-
-     echo "ID=$user_id" > $SERVICE_V2FLY_CONFIG
+  config::load_file $SERVICE_CONFIG
+  if [ -z "$SERVICE_V2FLY_ID" ]; then
+    inquirer::text "请输入 USER ID:" value $(os::uuid)
+    config::set SERVICE_V2FLY_ID $value $SERVICE_CONFIG
   fi
 
-  config::load_file $SERVICE_V2FLY_CONFIG
-  if [ -z "$ID" ]; then
-    inquirer::text "请输入 USER ID:" user_id $(os::uuid)
-
-    echo "ID=$user_id" > $SERVICE_V2FLY_CONFIG
-  fi
-
-  # @TODO call manually
-  service::run_check_ok
+  export SERVICE_V2FLY_ID=$SERVICE_V2FLY_ID
 }
 
 check $@

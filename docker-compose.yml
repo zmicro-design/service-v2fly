@@ -17,8 +17,10 @@ services:
     restart: always
     build:
       context: ./images/v2fly
-    env_file:
-      - ${SERVICE_V2FLY_CONFIG}
+    # env_file:
+    #   - ${SERVICE_V2FLY_CONFIG}
+    environment:
+      ID: ${SERVICE_V2FLY_ID}
     volumes:
       - type: bind
         source: /etc/localtime
