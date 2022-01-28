@@ -22,6 +22,8 @@ check() {
     config::set SERVICE_V2FLY_ID $value $SERVICE_CONFIG
   fi
 
+  config::load_file $SERVICE_CONFIG
+
   export SERVICE_V2FLY_ID=$SERVICE_V2FLY_ID
 }
 
