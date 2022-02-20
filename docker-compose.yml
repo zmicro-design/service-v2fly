@@ -19,8 +19,6 @@ services:
   v2fly:
     restart: always
     image: whatwewant/v2fly:${SERVICE_V2FLY_VERSION}
-    # build:
-    #   context: ./images/v2fly
     # env_file:
     #   - ${SERVICE_V2FLY_CONFIG}
     environment:
