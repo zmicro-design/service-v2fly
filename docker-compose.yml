@@ -9,23 +9,31 @@ services:
       - 0.0.0.0:80:80
       - 0.0.0.0:443:443
     environment:
-      UPSTREAM: v2fly:8080
+      UPSTREAM_VMESS: v2fly:8080
+      UPSTREAM_VLESS: v2fly:8081
+      UPSTREAM_SHADOWSOCKS: v2fly:8082
+      UPSTREAM_TROJAN: v2fly:8083
     volumes:
       - ${SERVICE_V2FLY_SSL}:/etc/nginx-ssl
 
   v2fly:
     restart: always
-    build:
-      context: ./images/v2fly
+    image: whatwewant/v2fly:${SERVICE_V2FLY_VERSION}
+    # build:
+    #   context: ./images/v2fly
     # env_file:
     #   - ${SERVICE_V2FLY_CONFIG}
     environment:
       ID: ${SERVICE_V2FLY_ID}
+      VMESS_ID: ${SERVICE_V2FLY_ID}
+      VLESS_ID: ${SERVICE_V2FLY_ID}
     volumes:
       - type: bind
         source: /etc/localtime
         target: /etc/localtime
       - ${SERVICE_LOGS}:/var/log/v2ray
+    #   - ${SERVICE_DIR}/tmp:/etc/v2ray
+    # command: sleep infinity
 
 networks:
   default:
