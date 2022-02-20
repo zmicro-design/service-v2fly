@@ -1,3 +1,3 @@
 NAME=v2fly
-VERSION=v1.0.5
+VERSION=v1.1.0
 DESCRIPTION="V2Fly Service"
