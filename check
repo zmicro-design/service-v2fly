@@ -3,6 +3,10 @@
 load inquirer
 
 check() {
+  if [ -n "$SERVICE_V2FLY_CUSTOM_SSL" ]; then
+    export SERVICE_V2FLY_SSL=$SERVICE_V2FLY_CUSTOM_SSL
+  fi
+
   if [ ! -f $SERVICE_CONFIG ]; then
      touch $SERVICE_CONFIG
   fi
