@@ -23,8 +23,6 @@ services:
     #   - ${SERVICE_V2FLY_CONFIG}
     environment:
       ID: ${SERVICE_V2FLY_ID}
-      VMESS_ID: ${SERVICE_V2FLY_ID}
-      VLESS_ID: ${SERVICE_V2FLY_ID}
     volumes:
       - type: bind
         source: /etc/localtime
