@@ -20,7 +20,7 @@ services:
         target: /etc/nginx/ssl
       - type: bind
         source: ${SERVICE_LOGS}
-        target: /var/log/v2ray
+        target: /var/log/v2fly
 
 networks:
   default:
