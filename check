@@ -8,7 +8,7 @@ check() {
   fi
 
   if [ ! -f $SERVICE_CONFIG ]; then
-     touch $SERVICE_CONFIG
+    touch $SERVICE_CONFIG
   fi
 
   if [ ! -d $SERVICE_V2FLY_SSL ]; then
@@ -21,14 +21,25 @@ check() {
   fi
 
   config::load_file $SERVICE_CONFIG
+
   if [ -z "$SERVICE_V2FLY_ID" ]; then
     inquirer::text "请输入 USER ID:" value $(os::uuid)
     config::set SERVICE_V2FLY_ID $value $SERVICE_CONFIG
   fi
 
+  if [ -z "$SERVICE_V2FLY_MODE" ]; then
+    local choices=(
+      "https"
+      "http"
+    )
+    inquirer::select "请输入 MODE:" choices value
+    config::set SERVICE_V2FLY_MODE $value $SERVICE_CONFIG
+  fi
+
   config::load_file $SERVICE_CONFIG
 
   export SERVICE_V2FLY_ID=$SERVICE_V2FLY_ID
+  export SERVICE_V2FLY_MODE=$SERVICE_V2FLY_MODE
 }
 
 check $@

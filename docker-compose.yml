@@ -8,19 +8,19 @@ services:
       - 0.0.0.0:80:80
       - 0.0.0.0:443:443
     environment:
-      MODE: https
+      MODE: ${SERVICE_V2FLY_MODE}
       ID: ${SERVICE_V2FLY_ID}
       DEBUG: 'true'
     volumes:
-      - type: bind
-        source: /etc/localtime
-        target: /etc/localtime
+      # - type: bind
+      #   source: /etc/localtime
+      #   target: /etc/localtime
       - type: bind
         source: ${SERVICE_V2FLY_SSL}
         target: /etc/nginx/ssl
-      - type: bind
-        source: ${SERVICE_LOGS}
-        target: /var/log/v2fly
+      # - type: bind
+      #   source: ${SERVICE_LOGS}
+      #   target: /var/log/v2fly
 
 networks:
   default:
