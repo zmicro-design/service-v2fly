@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$TESTING" = "true" ]; then
-  zmicro service config v2fly
+  zmicro service test v2fly
   exit 0
 fi
 

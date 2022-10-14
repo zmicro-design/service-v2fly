@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  v2fly:
+    restart: always
+    image: whatwewant/v2fly:${SERVICE_V2FLY_VERSION}
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
+    environment:
+      MODE: ${SERVICE_V2FLY_MODE}
+      ID: ${SERVICE_V2FLY_ID}
+      DEBUG: 'true'
+
+networks:
+  default:
+    external: true
+    name: compose-ingress
