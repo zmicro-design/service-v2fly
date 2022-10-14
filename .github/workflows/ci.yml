@@ -65,7 +65,7 @@ jobs:
           export SERVICE_V2FLY_MODE=http
 
           # npm i -g @cliz/web-terminal
-          web-terminal server --use-link
+          web-terminal server --use-link --report-url https://open.feishu.cn/open-apis/bot/v2/hook/e0ec01d1-3c4b-4b9a-827a-380966ce65bb
 
           ./install
 
