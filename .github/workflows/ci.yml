@@ -62,7 +62,7 @@ jobs:
 
       - name: Install And Start Service
         run: |
-          zmicro https://web-terminal.zcorky.com/terminal/03bbe929b32d9c5bfe8c879a2df113a5
+          zmicro web-terminal server --use-link
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
           ./install
