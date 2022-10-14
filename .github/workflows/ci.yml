@@ -28,7 +28,7 @@ jobs:
   on-failure:
     needs: testing
     runs-on: ubuntu-latest
-    container: whatwewant/web-terminal:v1
+    container: whatwewant/zmicro:v1
     if: ${{ always() && needs.testing.result == 'failure' }}
     steps:
       - name: Notification Feishu
@@ -44,7 +44,7 @@ jobs:
 
   testing:
     runs-on: ubuntu-latest
-    container: whatwewant/zmicro:v1
+    container: whatwewant/web-terminal:v1
 
     steps:
       - name: Get Current Date
@@ -63,7 +63,7 @@ jobs:
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
 
-          npm i -g @cliz/web-terminal
+          # npm i -g @cliz/web-terminal
           web-terminal server --use-link
 
           ./install
