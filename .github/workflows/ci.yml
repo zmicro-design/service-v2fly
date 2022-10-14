@@ -62,7 +62,10 @@ jobs:
           # zmicro web-terminal server --use-link
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
+
+          npm i -g @cliz/web-terminal
           web-terminal server --use-link
+
           ./install
 
       # - name: Start service
