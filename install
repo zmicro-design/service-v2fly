@@ -5,4 +5,9 @@ if [ $? -ne 0 ]; then
   curl -o- https://raw.githubusercontent.com/zcorky/zmicro/master/install | bash
 fi
 
-LOG_LEVEL=debug zmicro service start v2fly
+if [ "$TESTING" = "true" ]; then
+  zmicro service config v2fly
+  exit 0
+fi
+
+zmicro service start v2fly

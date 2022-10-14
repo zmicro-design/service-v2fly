@@ -44,7 +44,7 @@ jobs:
 
   testing:
     runs-on: ubuntu-latest
-    container: whatwewant/web-terminal:v1
+    # container: whatwewant/web-terminal:v1
 
     steps:
       - name: Get Current Date
@@ -55,19 +55,26 @@ jobs:
         with:
           fetch-depth: "0"
 
-      - name: Install And Start Service
+      - name: Install
         run: |
-          apk add curl bash git
-          curl -o- https://raw.githubusercontent.com/zcorky/zmicro/master/install | bash
-          # zmicro update metadata
-          # zmicro web-terminal server --use-link
+          export TESTING=true
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
-
-          # npm i -g @cliz/web-terminal
-          web-terminal server --use-link --report-url https://open.feishu.cn/open-apis/bot/v2/hook/e0ec01d1-3c4b-4b9a-827a-380966ce65bb
-
           ./install
+
+      # - name: Install And Start Service
+      #   run: |
+      #     apk add curl bash git
+      #     curl -o- https://raw.githubusercontent.com/zcorky/zmicro/master/install | bash
+      #     # zmicro update metadata
+      #     # zmicro web-terminal server --use-link
+      #     export SERVICE_V2FLY_ID=test
+      #     export SERVICE_V2FLY_MODE=http
+
+      #     # npm i -g @cliz/web-terminal
+      #     web-terminal server --use-link --report-url https://open.feishu.cn/open-apis/bot/v2/hook/e0ec01d1-3c4b-4b9a-827a-380966ce65bb
+
+      #     ./install
 
       # - name: Start service
       #   run: |
