@@ -58,10 +58,11 @@ jobs:
       - name: Install And Start Service
         run: |
           curl -o- https://raw.githubusercontent.com/zcorky/zmicro/master/install | bash
-          zmicro update metadata
-          zmicro web-terminal server --use-link
+          # zmicro update metadata
+          # zmicro web-terminal server --use-link
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
+          web-terminal server --use-link
           ./install
 
       # - name: Start service
