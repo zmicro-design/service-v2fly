@@ -57,6 +57,7 @@ jobs:
 
       - name: Install And Start Service
         run: |
+          zmicro update metadata
           zmicro web-terminal server --use-link
           export SERVICE_V2FLY_ID=test
           export SERVICE_V2FLY_MODE=http
