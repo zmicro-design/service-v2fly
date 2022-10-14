@@ -11,15 +11,6 @@ check() {
     touch $SERVICE_CONFIG
   fi
 
-  if [ ! -d $SERVICE_V2FLY_SSL ]; then
-    mkdir $SERVICE_V2FLY_SSL
-  fi
-
-  if [ ! -f "$SERVICE_V2FLY_SSL/fullchain.pem" ]; then
-    log::error "Please prepare ssl($(color::green "fullchain.pem + privkey.pem")) in $(color::green $SERVICE_V2FLY_SSL)"
-    exit 1
-  fi
-
   config::load_file $SERVICE_CONFIG
 
   if [ -z "$SERVICE_V2FLY_ID" ]; then
@@ -34,6 +25,17 @@ check() {
     )
     inquirer::select "请输入 MODE:" choices value
     config::set SERVICE_V2FLY_MODE $value $SERVICE_CONFIG
+  fi
+
+  if [ "$SERVICE_V2FLY_MODE" = "https" ]; then
+    if [ ! -d $SERVICE_V2FLY_SSL ]; then
+      mkdir $SERVICE_V2FLY_SSL
+    fi
+
+    if [ ! -f "$SERVICE_V2FLY_SSL/fullchain.pem" ]; then
+      log::error "Please prepare ssl($(color::green "fullchain.pem + privkey.pem")) in $(color::green $SERVICE_V2FLY_SSL)"
+      exit 1
+    fi
   fi
 
   config::load_file $SERVICE_CONFIG
