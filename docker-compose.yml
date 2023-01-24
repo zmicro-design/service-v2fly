@@ -21,6 +21,8 @@ services:
       # - type: bind
       #   source: ${SERVICE_LOGS}
       #   target: /var/log/v2fly
+    mem_limit: 100m
+    cpus: 0.5
 
 networks:
   default:
