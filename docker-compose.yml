@@ -10,7 +10,7 @@ services:
     environment:
       MODE: ${SERVICE_V2FLY_MODE}
       ID: ${SERVICE_V2FLY_ID}
-      DEBUG: 'true'
+      DEBUG: "${SERVICE_V2FLY_DEBUG:-false}"
     volumes:
       # - type: bind
       #   source: /etc/localtime
@@ -18,9 +18,9 @@ services:
       - type: bind
         source: ${SERVICE_V2FLY_SSL}
         target: /etc/nginx/ssl
-      # - type: bind
-      #   source: ${SERVICE_LOGS}
-      #   target: /var/log/v2fly
+      - type: bind
+        source: ${SERVICE_LOGS}
+        target: /var/log/v2fly
     mem_limit: 100m
     cpus: 0.5
 
